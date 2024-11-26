@@ -2,21 +2,32 @@ services:
   laravel:
     build:
       context: .
+      args:
+        server_port: ${SERVER_PORT:-9000}
     ports:
-      - "9000:9000"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: 3306
-      DB_DATABASE: laravel_db
+      DB_DATABASE: ${DB_NAME:-laravel_db}
       DB_USERNAME: root
-      DB_PASSWORD: 123123
+      DB_PASSWORD: ${ROOT_PASSWORD:-123123}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     image: mysql:latest
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${DB_NAME:-laravel_db}" ]
+      timeout: 20s
+      retries: 5
     environment:
-      MYSQL_ROOT_PASSWORD: 123123
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD:-123123}
       MYSQL_HOST: "%"
+      MYSQL_DATABASE: ${DB_NAME:-laravel_db}
     volumes:
-      - /laravel-mysql-data:/var/lib/mysql
+      - laravel_volume:/var/lib/mysql
+
+volumes:
+  laravel_volume:
