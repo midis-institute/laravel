@@ -71,7 +71,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ```sh
 docker compose build
 ```
-- Запуск проекта Laravel в связке автоматически развертываемой базой данных MySQL:
+- Запуск проекта Laravel в связке с автоматически развертываемой базой данных MySQL:
 ```sh
 docker compose up -d
 ```
