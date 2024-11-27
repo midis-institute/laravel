@@ -64,3 +64,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Запуск проекта
+Для запуска проекта на Laravel и автоматического развертывания базы данных используйте следующие команды:
+- Пересборка Laravel для внесения кодовых изменений/изменений Dockerfile'a в итоговый образ:
+```sh
+docker compose build
+```
+- Запуск проекта Laravel в связке автоматически развертываемой базой данных MySQL:
+```sh
+docker compose up -d
+```
+- Остановка проекта Laravel и базы данных:
+```sh
+docker compose down
+```
