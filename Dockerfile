@@ -1,7 +1,5 @@
 FROM bitnami/laravel AS base
 
-ARG server_port=9000
-
 WORKDIR /app
 
 COPY . /app

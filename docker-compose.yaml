@@ -2,10 +2,8 @@ services:
   laravel:
     build:
       context: .
-      args:
-        server_port: ${SERVER_PORT:-9000}
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${SERVER_PORT:-9000}:${SERVER_PORT}"
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db
