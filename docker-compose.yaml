@@ -3,7 +3,7 @@ services:
     build:
       context: .
     ports:
-      - "${SERVER_PORT:-9000}:${SERVER_PORT}"
+      - "${SERVER_PORT:-9000}:${SERVER_PORT:-9000}"
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db
@@ -17,7 +17,7 @@ services:
   db:
     image: mysql:latest
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${DB_NAME:-laravel_db}" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${ROOT_PASSWORD:-123123}" ]
       timeout: 20s
       retries: 5
     environment:
