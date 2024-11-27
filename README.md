@@ -68,8 +68,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Project run
 для запуска проекта на ларавел и автоматического развертывания базы данных используйте следующие команды:
 - Пересборка Laravel для внесения кодовых изменений/изменений Dockerfile'a в итоговый образ:
-`docker compose build`
+```sh
+docker compose build
+```
 - Запуск проекта Laravel в связке автоматически развертываемой базой данных MySQL:
-`docker compose up -d`
+```sh
+docker compose up -d
+```
 - Остановка проекта Laravel и базы данных:
-`docker compose down`
+```sh
+docker compose down
+```
