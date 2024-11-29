@@ -2,12 +2,11 @@ FROM node:22 AS frontend
 
 WORKDIR /app
 
-COPY package*.json ./
- 
-RUN npm install -g pnpm && pnpm install 
+COPY package.json package-lock.json /app/
+
+RUN npm install
 
 COPY . /app
-
 RUN npm run build
 
 FROM bitnami/laravel AS base
@@ -17,7 +16,6 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y unzip git && rm -rf /var/lib/apt/lists/*
 
 COPY . /app
-
 COPY --from=frontend /app/public /app/public
 
 RUN composer install --no-dev --optimize-autoloader
