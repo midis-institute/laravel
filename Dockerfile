@@ -1,15 +1,30 @@
+FROM node:22 AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json /app/
+
+RUN npm install
+
+COPY . /app
+RUN npm run build
+
 FROM bitnami/laravel AS base
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y unzip git && rm -rf /var/lib/apt/lists/*
+
 COPY . /app
+COPY --from=frontend /app/public /app/public
 
-RUN npm install -g pnpm && pnpm install
+RUN composer install --no-dev --optimize-autoloader
 
-RUN npm run dev&
+RUN bash ./scripts/init_env.sh
 
-RUN composer install
-
-RUN mv .env.example .env && php artisan key:generate
-
-ENTRYPOINT php artisan migrate && php artisan serve --host 0.0.0.0 --port=9000
+ENTRYPOINT ["sh", "-c", "php artisan route:cache \
+    && php artisan view:cache \
+    && php artisan event:cache \
+    && php artisan optimize \
+    && php artisan migrate \
+    && php artisan serve --host=0.0.0.0 --port=${APP_PORT:-9000}"]
