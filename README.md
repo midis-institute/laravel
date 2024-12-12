@@ -33,7 +33,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 Для запуска проекта на Laravel и автоматического развертывания базы данных необходимо воспользоваться утилитой (файл в корневой директории) `./run.sh`, используя терминал Git Bash.
 
-### <a name='#project-run-docker-compose'></a>[Запуск проекта в docker compose с помощью ./run.sh]
+### <a name='project-run-docker-compose'></a>Запуск проекта в docker compose с помощью ./run.sh
 
 Для запуска проекта в docker-compose через `./run.sh`, откройте терминал Git Bash в директории проекта и выполните команду:
 
@@ -61,20 +61,20 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 - Запуск проекта Laravel в связке с автоматически развертываемой базой данных MySQL:
 
 ```sh
-docker  compose  up  -d
+docker compose up -d
 ```
 
 - Остановка проекта Laravel без остановки базы данных:
 
 ```sh
-docker  compose  down  laravel
+docker compose down laravel
 ```
 
 При любом изменении файлов необходимо пересобирать Laravel-проект и запускать его заново:
 ```sh
-docker  compose  down  laravel
-docker  compose  build  laravel
-docker  compose  up  -d
+docker compose down laravel
+docker compose build laravel
+docker compose up -d
 
 ```
 
@@ -89,14 +89,14 @@ docker  compose  up  -d
 В терминале Git Bash:
 
 ```sh
-rm  -rf  vendor  # удаление папки vendor
-rm  -rf  node_modules  # удаление папки node_modules
+rm -rf vendor  # удаление папки vendor
+rm -rf node_modules  # удаление папки node_modules
 ```
 
 После необходимо вызвать команду, которая отвечает за копирование файлов с локального компьютера и загрузку их на удаленный хост:
 
 ```sh
-scp  -r  <путь_до_проекта>  <имя_пользователя>@<удаленный_хост>:/usr/src
+scp -r <путь_до_проекта> <имя_пользователя>@<удаленный_хост>:/usr/src
 ```
 
 - `путь_до_проекта` - это путь до папки, в которой находится ваш Laravel-проект. Если терминал открыт внутри этой папки, можно указать `.`, вместо полного пути.
@@ -116,7 +116,7 @@ scp  -r  <путь_до_проекта>  <имя_пользователя>@<уд
 Для подключения к удаленному хосту используйте команду:
 
 ```sh
-ssh  <имя_пользователя>@<удаленный_хост>
+ssh <имя_пользователя>@<удаленный_хост>
 ```
 
 - имя_пользователя - имя подключающегося к удаленному хосту пользователя. По стандарту - `root`.
@@ -128,7 +128,7 @@ ssh  <имя_пользователя>@<удаленный_хост>
 Для перехода по папкам, используйте команду:
 
 ```sh
-cd  <путь_к_папке>
+cd <путь_к_папке>
 ```
 
 - путь_к_папке - путь до директории, в которую необходимо перейти. Например, `/usr/src`.  
