@@ -33,7 +33,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 Для запуска проекта на Laravel и автоматического развертывания базы данных необходимо воспользоваться утилитой (файл в корневой директории) `./run.sh`, используя терминал Git Bash.
 
-### [Запуск проекта в docker compose с помощью ./run.sh](#project-run-docker-compose)
+### <a name='#project-run-docker-compose'></a>[Запуск проекта в docker compose с помощью ./run.sh]
 
 Для запуска проекта в docker-compose через `./run.sh`, откройте терминал Git Bash в директории проекта и выполните команду:
 
